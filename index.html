@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday My Love ❤️</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff4fd8, #7f00ff, #ffcc70);
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: white;
+    }
+
+    /* Floating Hearts Background */
+    .heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.8;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    nav h2 {
+      font-size: 18px;
+      color: #ffe6ff;
+      text-shadow: 0px 0px 10px pink;
+    }
+
+    nav .btn {
+      background: gold;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav .btn:hover {
+      transform: scale(1.05);
+      background: #ffea00;
+    }
+
+    section {
+      padding: 90px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 20px;
+    }
+
+    .hero h1 {
+      font-size: 45px;
+      text-shadow: 0px 0px 15px #ffb3ff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0px 0px 10px pink;
+      }
+      to {
+        text-shadow: 0px 0px 25px gold;
+      }
+    }
+
+    .hero p {
+      margin-top: 15px;
+      font-size: 18px;
+      max-width: 600px;
+      color: #fff;
+      opacity: 0.95;
+    }
+
+    .hero .hero-btns {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .big-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
+      backdrop-filter: blur(10px);
+    }
+
+    .big-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: scale(1.05);
+    }
+
+    /* Countdown */
+    .countdown-box {
+      margin-top: 25px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .time-box {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 12px 18px;
+      border-radius: 15px;
+      min-width: 80px;
+      text-align: center;
+      box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.2);
+    }
+
+    .time-box h2 {
+      font-size: 26px;
+      color: gold;
+    }
+
+    .time-box span {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    /* Section Titles */
+    .title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 30px;
+      text-shadow: 0px 0px 12px pink;
+    }
+
+    /* ===========================
+       NEW GALLERY GRID LAYOUT
+    ============================ */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 2px solid rgba(255,255,255,0.3);
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.4);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .popup-content {
+      background: linear-gradient(135deg, #ff4fd8, #7f00ff, gold);
+      padding: 30px;
+      border-radius: 25px;
+      text-align: center;
+      max-width: 350px;
+      animation: pop 0.5s ease;
+      box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.4);
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .popup-content h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .popup-content p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      background: black;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    /* Typing Love Message */
+    .typing-box {
+      max-width: 750px;
+      margin: auto;
+      padding: 25px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      font-size: 18px;
+      line-height: 1.7;
+      box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+      min-height: 140px;
+    }
+
+    /* Reasons Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 18px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.15);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.03);
+    }
+
+    /* Quiz */
+    .quiz-box {
+      max-width: 650px;
+      margin: auto;
+      padding: 25px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .quiz-box h3 {
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .quiz-box button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      transition: 0.3s;
+    }
+
+    .quiz-box button:hover {
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    #quizResult {
+      margin-top: 15px;
+      font-weight: bold;
+      text-align: center;
+      color: gold;
+    }
+
+    /* Mini Game */
+    .game-box {
+      text-align: center;
+      padding: 25px;
+      max-width: 600px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 20px;
+      box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+    }
+
+    .heart-btn {
+      margin-top: 15px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 18px;
+      background: gold;
+      color: black;
+      font-weight: bold;
+    }
+
+    .secret-message {
+      margin-top: 20px;
+      display: none;
+      font-size: 20px;
+      color: #ffea00;
+      text-shadow: 0px 0px 12px pink;
+    }
+
+    /* Gift Box */
+    .gift-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .gift-box {
+      width: 150px;
+      height: 150px;
+      background: gold;
+      margin: auto;
+      border-radius: 15px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+      transition: 0.3s;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.05);
+    }
+
+    .gift-lid {
+      width: 150px;
+      height: 60px;
+      background: #ff4fd8;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: 15px 15px 0 0;
+      transition: 0.5s;
+      transform-origin: top;
+    }
+
+    .gift-box.open .gift-lid {
+      transform: rotateX(130deg);
+    }
+
+    .gift-text {
+      margin-top: 15px;
+      font-size: 22px;
+      display: none;
+      color: white;
+      text-shadow: 0px 0px 15px gold;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      font-size: 16px;
+    }
+
+    /* Fade In on Scroll */
+    .fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 1s;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -20px;
+      animation: confettiFall 4s linear forwards;
+      z-index: 3000;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Fireworks */
+    .firework {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      animation: fireworkAnim 1s ease-out forwards;
+      z-index: 4000;
+    }
+
+    @keyframes fireworkAnim {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(8);
+        opacity: 0;
+      }
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+      .title {
+        font-size: 25px;
+      }
+      nav h2 {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Audio -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Navbar -->
+  <nav>
+    <h2>💖 Happy Birthday Puntu😘😘💋</h2>
+    <button class="btn" onclick="toggleMusic()">🔊 Music</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Happy Birthday Puntu😘😘💋 🎂❤️</h1>
+    <p>Happy Birthday Puntu Bacha 🎂💖
+
+Today is your special day, and I just want to tell you that you are the most beautiful part of my life. Your smile is my happiness, your voice is my peace, and your love is my biggest blessing. Every moment with you feels like a dream I never want to end.
+
+On your birthday, I pray that all your wishes come true and your life becomes full of joy, success, and endless love. Always stay happy, keep smiling, and never forget that I will always be by your side.
+
+Happy Birthday My Love Puntu Bacha ❤️🎂
+Forever Yours, Bishu 💕
+      
+    </p>
+
+    <div class="countdown-box">
+      <div class="time-box">
+        <h2 id="days">00</h2>
+        <span>Days</span>
+      </div>
+      <div class="time-box">
+        <h2 id="hours">00</h2>
+        <span>Hours</span>
+      </div>
+      <div class="time-box">
+        <h2 id="minutes">00</h2>
+        <span>Minutes</span>
+      </div>
+      <div class="time-box">
+        <h2 id="seconds">00</h2>
+        <span>Seconds</span>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <button class="big-btn" onclick="openPopup()">🎁 Click for Surprise</button>
+      <a href="#gallery"><button class="big-btn">📸 Our Memories</button></a>
+      <a href="#message"><button class="big-btn">💌 Love Message</button></a>
+    </div>
+  </section>
+
+  <!-- Popup Surprise -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>🎉 Surprise My Love!</h2>
+      <p>Puntu, you are my happiness, my heart, my everything ❤️</p>
+      <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="fade">
+    <h2 class="title">📸 Our Memory Gallery</h2>
+
+    <div class="gallery">
+      <img src="image/img1.jpg" alt="Memory 1">
+      <img src="image/IMG 9.jpg" alt="Memory 2">
+      <img src="image/IMG 8.jpg" alt="Memory 3">
+      <img src="image/IMG 7.jpg" alt="Memory 4">
+      <img src="image/IMG 6.jpg" alt="Memory 5">
+      <img src="image/img 22.jpeg" alt="Memory 6">
+      <img src="image/IMG 15.jpg" alt="Memory 7">
+      <img src="image/IMG 14.jpg" alt="Memory 8">
+      <img src="image/IMG 13.jpg" alt="Memory 9">
+      <img src="image/IMG 12.jpg" alt="Memory 10">
+      <img src="image/IMG122.jpeg" alt="Memory 11">
+      <img src="image/IMG 10.jpg" alt="Memory 12">
+      <img src="image/image 66.jpg" alt="Memory 13">
+      <img src="image/IMG2.jpg" alt="Memory 11">
+      <img src="image/IMG4.jpg" alt="Memory 11">
+    </div>
+
+    <p style="text-align:center; margin-top:15px; opacity:0.9;">
+      OUR MEMORIES 
+    </p>
+  </section>
+
+  <!-- LOVE MESSAGE -->
+  <section id="message" class="fade">
+    <h2 class="title">💌 Love Message</h2>
+    <div class="typing-box" id="typing"></div>
+  </section>
+
+  <!-- REASONS -->
+  <section class="fade">
+    <h2 class="title">💖 Reasons Why I Love You</h2>
+    <div class="cards">
+      <div class="card">🌸 Your smile makes my day brighter</div>
+      <div class="card">💫 You support me in every situation</div>
+      <div class="card">❤️ You are my peace and happiness</div>
+      <div class="card">🌙 Your love feels like magic</div>
+      <div class="card">🥰 You are my best friend forever</div>
+      <div class="card">💍 I want to spend my whole life with you</div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="fade">
+    <h2 class="title">🧠 Fun Quiz</h2>
+
+    <div class="quiz-box">
+      <h3>How well do you know Bishu? 😄</h3>
+
+      <button onclick="checkQuiz(1)">He loves Puntu more than anything ❤️</button>
+      <button onclick="checkQuiz(2)">He forgets Puntu sometimes 😅</button>
+      <button onclick="checkQuiz(3)">He loves pizza more than Puntu 🍕</button>
+
+      <p id="quizResult"></p>
+    </div>
+  </section>
+
+  <!-- MINI GAME -->
+  <section class="fade">
+    <h2 class="title">💖 Heart Click Mini Game</h2>
+
+    <div class="game-box">
+      <h3>Click hearts and collect love points ❤️</h3>
+      <p>Score: <span id="score">0</span></p>
+
+      <button class="heart-btn" onclick="collectHeart()">❤️ Click Heart</button>
+
+      <div class="secret-message" id="secretMessage">
+        🔐 Secret Message Unlocked:  
+        <br><br>
+        "Puntu, you are my destiny, my dream, my forever love ❤️✨"
+      </div>
+    </div>
+  </section>
+
+  <!-- GIFT BOX -->
+  <section class="fade">
+    <h2 class="title">🎁 Open Your Gift</h2>
+
+    <div class="gift-container">
+      <div class="gift-box" id="giftBox" onclick="openGift()">
+        <div class="gift-lid"></div>
+      </div>
+
+      <div class="gift-text" id="giftText">
+        💖 I Love You Forever Puntu 💖
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Forever Yours, Bishu 💕
+  </footer>
+
+  <script>
+    /* MUSIC CONTROL */
+    let music = document.getElementById("bgMusic");
+    let isPlaying = true;
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        isPlaying = false;
+        alert("Music Off 🔇");
+      } else {
+        music.play();
+        isPlaying = true;
+        alert("Music On 🔊");
+      }
+    }
+
+    /* POPUP SURPRISE */
+    function openPopup() {
+      document.getElementById("popup").style.display = "flex";
+      confettiBlast();
+      fireworks();
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    /* CONFETTI */
+    function confettiBlast() {
+      for (let i = 0; i < 40; i++) {
+        let confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.background = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 4000);
+      }
+    }
+
+    /* FIREWORKS */
+    function fireworks() {
+      for (let i = 0; i < 10; i++) {
+        let firework = document.createElement("div");
+        firework.classList.add("firework");
+        firework.style.left = Math.random() * 100 + "vw";
+        firework.style.top = Math.random() * 60 + "vh";
+        firework.style.background = "hsl(" + Math.random() * 360 + ", 100%, 50%)";
+        document.body.appendChild(firework);
+
+        setTimeout(() => {
+          firework.remove();
+        }, 1000);
+      }
+    }
+
+    /* FLOATING HEARTS BACKGROUND */
+    function createHearts() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 25 + 15 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHearts, 300);
+
+    /* COUNTDOWN TIMER */
+    function updateCountdown() {
+      let now = new Date();
+      let midnight = new Date();
+      midnight.setHours(23, 59, 59, 999);
+
+      let diff = midnight - now;
+
+      let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      let minutes = Math.floor((diff / (1000 * 60)) % 60);
+      let seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    /* TYPING MESSAGE */
+    const messageText =
+      "Happy Birthday Puntu ❤️🎂\n\n" +
+      "You are not just my girlfriend, you are my happiness, my peace, and my everything.\n" +
+      "Every moment with you feels like a beautiful dream.\n\n" +
+      "I promise to always love you, support you, and stay beside you forever.\n\n" +
+      "May your life always be filled with love, success, and endless smiles.\n\n" +
+      "Forever yours,\nBishu 💕";
+
+    let typingIndex = 0;
+    function typeMessage() {
+      if (typingIndex < messageText.length) {
+        document.getElementById("typing").innerHTML +=
+          messageText.charAt(typingIndex) === "\n"
+            ? "<br>"
+            : messageText.charAt(typingIndex);
+        typingIndex++;
+        setTimeout(typeMessage, 40);
+      }
+    }
+    typeMessage();
+
+    /* QUIZ */
+    function checkQuiz(option) {
+      let result = document.getElementById("quizResult");
+      if (option === 1) {
+        result.innerHTML = "Correct! Bishu loves Puntu more than anything ❤️😍";
+        confettiBlast();
+      } else {
+        result.innerHTML = "Wrong 😅 Try again my love!";
+      }
+    }
+
+    /* MINI GAME */
+    let score = 0;
+    function collectHeart() {
+      score++;
+      document.getElementById("score").innerText = score;
+
+      if (score >= 5) {
+        document.getElementById("secretMessage").style.display = "block";
+        fireworks();
+      }
+    }
+
+    /* GIFT BOX */
+    function openGift() {
+      let giftBox = document.getElementById("giftBox");
+      let giftText = document.getElementById("giftText");
+
+      giftBox.classList.add("open");
+      giftText.style.display = "block";
+      confettiBlast();
+      fireworks();
+    }
+
+    /* FADE IN SCROLL */
+    const faders = document.querySelectorAll(".fade");
+
+    window.addEventListener("scroll", () => {
+      faders.forEach((fade) => {
+        const rect = fade.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          fade.classList.add("show");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
